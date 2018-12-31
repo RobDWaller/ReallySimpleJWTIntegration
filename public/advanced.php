@@ -2,14 +2,15 @@
 
 require('../vendor/autoload.php');
 
-use ReallySimpleJWT\TokenBuilder;
-use Carbon\Carbon;
+use ReallySimpleJWT\Build;
+use ReallySimpleJWT\Validate;
+use ReallySimpleJWT\Encode;
 
-$tokenBuilder = new TokenBuilder();
+$build = new Build('JWT', new Validate(), new Encode());
 
-$token = $tokenBuilder->addPayload(['key' => 'user_id', 'value' => 1])
+$token = $build->setPrivateClaim('uid', 12)
     ->setSecret('!secReT$123*')
-    ->setExpiration(Carbon::now()->addSeconds(30)->toDateTimeString())
+    ->setExpiration(time() + 30)
     ->setIssuer('localhost')
     ->build();
 
@@ -18,9 +19,9 @@ echo '<h1>Really Simple JWT Advanced Integration Test</h1>';
 echo '<h2>Get Token</h2>';
 
 echo "<pre>";
-var_dump($token);
+var_dump($token->getToken());
 echo "</pre>";
 
-echo '<p><a href="advancedvalidate.php?token=' . $token . '">Validate Token</a></p>';
+echo '<p><a href="advancedvalidate.php?token=' . $token->getToken() . '">Validate Token</a></p>';
 
 echo '<p><a href="/">Back</a></p>';

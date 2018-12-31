@@ -2,9 +2,12 @@
 
 require('../vendor/autoload.php');
 
-use ReallySimpleJWT\TokenValidator;
+use ReallySimpleJWT\Parse;
+use ReallySimpleJWT\Validate;
+use ReallySimpleJWT\Encode;
+use ReallySimpleJWT\Jwt;
 
-echo '<h1>Really Simple JWT Integration Test</h1>';
+echo '<h1>Really Simple JWT Advanced Integration Test</h1>';
 
 echo '<h2>Validate Token</h2>';
 
@@ -13,14 +16,16 @@ var_dump($_GET['token']);
 echo "</pre>";
 
 try {
-    $validator = new TokenValidator();
+    $jwt = new Jwt($_GET['token'], '!secReT$123*');
+    $parse = new Parse($jwt, new Validate(), new Encode());
 
-    $validator->splitToken($_GET['token'])
+    $parsed = $parse->validate()
         ->validateExpiration()
-        ->validateSignature('!secReT$123*');
+        ->parse();
 
     echo "<pre>";
     var_dump('Token Valid');
+    var_dump($parsed->getPayload());
     echo "</pre>";
 }
 catch (Exception $e) {

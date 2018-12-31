@@ -9,7 +9,6 @@
         }
     ],
     "require": {
-        "rbdwllr/reallysimplejwt": "^1.0",
-        "illuminate/support": "5.5.0"
+        "rbdwllr/reallysimplejwt": "dev-version-two"
     }
 }

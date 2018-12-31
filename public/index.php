@@ -28,4 +28,3 @@ echo '<form method="post" action="postvalidate.php">
 </form>';
 
 echo '<p><a href="/advanced.php">Go to Advanced</a></p>';
-echo '<p><a href="/unixtime.php">Go to Unix Time Test</a></p>';
