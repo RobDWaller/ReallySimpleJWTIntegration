@@ -21,10 +21,12 @@ try {
 
     $parsed = $parse->validate()
         ->validateExpiration()
+        ->validateNotBefore()
         ->parse();
 
     echo "<pre>";
     var_dump('Token Valid');
+    var_dump($parsed->getHeader());
     var_dump($parsed->getPayload());
     echo "</pre>";
 }
