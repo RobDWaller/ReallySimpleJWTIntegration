@@ -1,0 +1,15 @@
+{
+    "name": "rbdwllr/reallysimplejwtintegration",
+    "description": "Integration test for Really Simple JWT",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "rob waller",
+            "email": "rdwaller1984@gmail.com"
+        }
+    ],
+    "require": {
+        "rbdwllr/reallysimplejwt": "dev-master",
+        "illuminate/support": "5.5.0"
+    }
+}

@@ -1,0 +1,4 @@
+composer.lock
+.vagrant
+Vagrantfile
+vendor
