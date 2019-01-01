@@ -5,7 +5,7 @@ require('../vendor/autoload.php');
 use ReallySimpleJWT\Token;
 use Carbon\Carbon;
 
-$token = Token::getToken(1, '!secReT$123*', Carbon::now()->addSeconds(30)->toDateTimeString(), $_SERVER['HTTP_HOST']);
+$token = Token::create(1, '!secReT$123*', Carbon::now()->addSeconds(30)->toDateTimeString(), $_SERVER['HTTP_HOST']);
 
 echo '<h1>Really Simple JWT Integration Test</h1>';
 
