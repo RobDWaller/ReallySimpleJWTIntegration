@@ -17,6 +17,8 @@ try {
 
 	echo "<pre>";
 	var_dump($token);
+    var_dump(Token::getHeader($_GET['token'], '!secReT$123*'));
+    var_dump(Token::getPayload($_GET['token'], '!secReT$123*'));
 	echo "</pre>";
 }
 catch (Exception $e) {
