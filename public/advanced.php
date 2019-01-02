@@ -18,7 +18,7 @@ $token = $build->setContentType('JWT')
     ->setNotBefore(time() - 30)
     ->setIssuedAt(time())
     ->setJwtId('123ABC')
-    ->setPrivateClaim('uid', 12)
+    ->setPayloadClaim('uid', 12)
     ->build();
 
 echo '<h1>Really Simple JWT Advanced Integration Test</h1>';
