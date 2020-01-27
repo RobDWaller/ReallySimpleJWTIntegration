@@ -22,6 +22,7 @@ try {
     $parsed = $parse->validate()
         ->validateExpiration()
         ->validateNotBefore()
+        ->validateAudience('https://google.com')
         ->parse();
 
     echo "<pre>";

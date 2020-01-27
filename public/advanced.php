@@ -5,8 +5,9 @@ require('../vendor/autoload.php');
 use ReallySimpleJWT\Build;
 use ReallySimpleJWT\Validate;
 use ReallySimpleJWT\Encode;
+use ReallySimpleJWT\Secret;
 
-$build = new Build('JWT', new Validate(), new Encode());
+$build = new Build('JWT', new Validate(), new Secret(), new Encode());
 
 $token = $build->setContentType('JWT')
     ->setHeaderClaim('info', 'foo')
