@@ -3,7 +3,6 @@
 require('../vendor/autoload.php');
 
 use ReallySimpleJWT\Token;
-use Carbon\Carbon;
 
 $token = Token::create(1, '!secReT$123*', time() + 30, $_SERVER['HTTP_HOST']);
 
