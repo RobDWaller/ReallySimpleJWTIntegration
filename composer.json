@@ -9,6 +9,6 @@
         }
     ],
     "require": {
-        "rbdwllr/reallysimplejwt": "3.0.3.x-dev"
+        "rbdwllr/reallysimplejwt": "3.1.1"
     }
 }
