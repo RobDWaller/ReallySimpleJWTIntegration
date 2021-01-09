@@ -1,4 +1,4 @@
-FROM php:7.2
+FROM php:7.4
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y git zip unzip vim \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
