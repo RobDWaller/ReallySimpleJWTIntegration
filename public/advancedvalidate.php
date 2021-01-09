@@ -4,8 +4,11 @@ require('../vendor/autoload.php');
 
 use ReallySimpleJWT\Parse;
 use ReallySimpleJWT\Validate;
-use ReallySimpleJWT\Encode;
+use ReallySimpleJWT\Helper\Validator;
+use ReallySimpleJWT\Decoders\DecodeHs256;
+use ReallySimpleJWT\Encoders\EncodeHs256;
 use ReallySimpleJWT\Jwt;
+use ReallySimpleJWT\Signature;
 
 echo '<h1>Really Simple JWT Advanced Integration Test</h1>';
 
@@ -17,13 +20,20 @@ echo "</pre>";
 
 try {
     $jwt = new Jwt($_GET['token'], '!secReT$123*');
-    $parse = new Parse($jwt, new Validate(), new Encode());
+    $parse = new Parse($jwt, new DecodeHs256());
+    $validate = new Validate(
+        $parse, 
+        new Signature(
+            new EncodeHs256()
+        ), 
+        new Validator()
+    );
 
-    $parsed = $parse->validate()
-        ->validateExpiration()
-        ->validateNotBefore()
-        ->validateAudience('https://google.com')
-        ->parse();
+    $validate->validate()
+        ->expiration()
+        ->notBefore();
+
+    $parsed = $parse->parse();
 
     echo "<pre>";
     var_dump('Token Valid');

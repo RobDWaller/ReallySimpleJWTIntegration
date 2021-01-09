@@ -3,11 +3,11 @@
 require('../vendor/autoload.php');
 
 use ReallySimpleJWT\Build;
-use ReallySimpleJWT\Validate;
-use ReallySimpleJWT\Encode;
+use ReallySimpleJWT\Helper\Validator;
+use ReallySimpleJWT\Encoders\EncodeHs256;
 use ReallySimpleJWT\Secret;
 
-$build = new Build('JWT', new Validate(), new Secret(), new Encode());
+$build = new Build('JWT', new Validator(), new Secret(), new EncodeHs256());
 
 $token = $build->setContentType('JWT')
     ->setHeaderClaim('info', 'foo')
@@ -36,7 +36,8 @@ echo '<p><a href="advancedvalidate.php?token=' . $token->getToken() . '">Validat
 
 echo '<h3>Fail!!</h3>';
 
-$tokenFail = $build->setContentType('JWT')
+$tokenFail = $build->reset()
+    ->setContentType('JWT')
     ->setHeaderClaim('info', 'foo')
     ->setSecret('!secReT$123*')
     ->setJwtId('123ABC')
